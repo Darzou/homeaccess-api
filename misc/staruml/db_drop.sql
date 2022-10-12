@@ -1,0 +1,1 @@
+DROP DATABASE home_access_control;

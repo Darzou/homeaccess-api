@@ -3,14 +3,17 @@
 class UnauthorizedAccess(Exception):
     pass
 
-class ControllerNotFound(Exception):
+
+class UserNotFound(Exception):
     pass
 
-class DeviceNotFound(Exception):
+
+class AccessExpired(Exception):
     pass
 
-class CommandNotFound(Exception):
+class WeekdayError(Exception):
     pass
 
-class InvalidRequestBody(Exception):
+
+class HourError(Exception):
     pass
