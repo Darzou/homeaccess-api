@@ -166,7 +166,7 @@
 									"font": "Arial;13;1",
 									"left": 424,
 									"top": 333,
-									"width": 211.81591796875,
+									"width": 245.76318359375,
 									"height": 13,
 									"text": "History"
 								},
@@ -192,7 +192,7 @@
 											"font": "Arial;13;0",
 											"left": 429,
 											"top": 356,
-											"width": 201.81591796875,
+											"width": 235.76318359375,
 											"height": 13
 										},
 										{
@@ -207,7 +207,22 @@
 											"font": "Arial;13;0",
 											"left": 429,
 											"top": 371,
-											"width": 201.81591796875,
+											"width": 235.76318359375,
+											"height": 13
+										},
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAGD0zcW1K9H+hY=",
+											"_parent": {
+												"$ref": "AAAAAAGDryRSmv1FrCs="
+											},
+											"model": {
+												"$ref": "AAAAAAGD0zcWya9ESX0="
+											},
+											"font": "Arial;13;0",
+											"left": 429,
+											"top": 386,
+											"width": 235.76318359375,
 											"height": 13
 										},
 										{
@@ -221,8 +236,8 @@
 											},
 											"font": "Arial;13;0",
 											"left": 429,
-											"top": 386,
-											"width": 201.81591796875,
+											"top": 401,
+											"width": 235.76318359375,
 											"height": 13
 										},
 										{
@@ -236,23 +251,23 @@
 											},
 											"font": "Arial;13;0",
 											"left": 429,
-											"top": 401,
-											"width": 201.81591796875,
+											"top": 416,
+											"width": 235.76318359375,
 											"height": 13
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 424,
 									"top": 351,
-									"width": 211.81591796875,
-									"height": 68
+									"width": 245.76318359375,
+									"height": 83
 								}
 							],
 							"font": "Arial;13;0",
 							"left": 424,
 							"top": 328,
-							"width": 211.81591796875,
-							"height": 91,
+							"width": 245.76318359375,
+							"height": 106,
 							"nameLabel": {
 								"$ref": "AAAAAAGDryRSmv1ED5Q="
 							},
@@ -766,7 +781,19 @@
 							"foreignKey": true,
 							"referenceTo": {
 								"$ref": "AAAAAAGDryE2hf0ezzA="
-							}
+							},
+							"nullable": true
+						},
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAGD0zcWya9ESX0=",
+							"_parent": {
+								"$ref": "AAAAAAGDryRSl/1Bqwg="
+							},
+							"name": "card_id",
+							"type": "VARCHAR",
+							"length": "16",
+							"nullable": true
 						},
 						{
 							"_type": "ERDColumn",

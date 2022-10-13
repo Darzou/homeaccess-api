@@ -30,7 +30,6 @@ class HomeAccessApi():
                     if up is None:
                         raise UserNotFound(card_id)
 
-                    print('here')
                     logger.debug('Authenticated user (card:%s), checking authorizations ...', card_id)
 
                     # Expiry check
@@ -60,14 +59,17 @@ class HomeAccessApi():
             logger.info('Authorized user uid:%s card:%s (%s / %s)', up['uid'], card_id, up['name'], up['profile'])
             authorized = True
         finally:
-            if up is not None:
-                # Log access history if we identified the user
-                with self._db:
-                    with self._db.cursor(cursor_factory=RealDictCursor) as cursor:
-                        cursor.execute(
-                            "INSERT INTO history(user_id, created_at, access_granted) VALUES "
-                            "(%s, '%s', %s)" % (up['uid'], dt.now(), authorized)
-                        )
+            if up is None:
+                hquery = "INSERT INTO history(card_id, created_at, access_granted) VALUES ('%s', '%s', %s)" % (
+                    card_id, dt.now(), authorized)
+            else:
+                hquery = "INSERT INTO history(user_id, card_id, created_at, access_granted) VALUES (%s, '%s', '%s', %s)" % (
+                    up['uid'], card_id, dt.now(), authorized)
+
+            # Log access history
+            with self._db:
+                with self._db.cursor() as cursor:
+                    cursor.execute(hquery)
 
             if authorized:
                 return 'authorized', 200

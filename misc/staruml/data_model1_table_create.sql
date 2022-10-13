@@ -16,7 +16,8 @@ CREATE INDEX ON public.user
 
 CREATE TABLE public.history (
     id SERIAL NOT NULL,
-    user_id integer NOT NULL,
+    user_id integer,
+    card_id varchar(16),
     created_at timestamp with time zone NOT NULL,
     access_granted boolean NOT NULL,
     PRIMARY KEY (id)
