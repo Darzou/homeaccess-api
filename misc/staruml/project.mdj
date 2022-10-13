@@ -693,9 +693,9 @@
 							"_parent": {
 								"$ref": "AAAAAAGDryDEdv0RIbU="
 							},
-							"name": "dahua_id",
-							"type": "INTEGER",
-							"length": 0,
+							"name": "card_id",
+							"type": "VARCHAR",
+							"length": "16",
 							"unique": true
 						},
 						{

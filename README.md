@@ -17,6 +17,4 @@ First, update your configuration and logging preferences:
 
 You can start it by **flask run** or using docker (c.f. **Dockerfile**).
 
-You will need to provision your RFID cards into the VTO's web management, every card must have a dedicated room number, then make the same config in the **Home Access Controller** app.
-
-Openhab's rule will listen to MQTT *AccessControl* events (through the Dahua2Mqtt app) and call this Rest API's endpoint for access authorizations.
+Openhab's rule will listen to MQTT *AccessControl* events on *_/DoorCard/Event topic* (through the Dahua2Mqtt app) and call this Rest API's endpoint for access authorizations.

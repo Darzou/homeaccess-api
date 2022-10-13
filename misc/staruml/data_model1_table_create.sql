@@ -1,6 +1,6 @@
 CREATE TABLE public.user (
     id SERIAL NOT NULL,
-    dahua_id integer NOT NULL,
+    card_id varchar(16) NOT NULL,
     name varchar(64) NOT NULL,
     profile_id integer NOT NULL,
     notify_on_access boolean NOT NULL,
@@ -8,7 +8,7 @@ CREATE TABLE public.user (
 );
 
 ALTER TABLE public.user
-    ADD UNIQUE (dahua_id);
+    ADD UNIQUE (card_id);
 
 CREATE INDEX ON public.user
     (profile_id);

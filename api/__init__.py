@@ -12,9 +12,10 @@ class HomeAccessApi():
         self._flask_app = flask_app
         self._db = db
 
-    def authorization(self, vto_user_id, door_id):
+    def authorization(self, card_id, door_id):
         try:
             authorized = False
+            up = None
 
             with self._db:
                 with self._db.cursor(cursor_factory=RealDictCursor) as cursor:
@@ -22,18 +23,18 @@ class HomeAccessApi():
                         "SELECT u.id as uid, u.name, p.name as profile, p.expire_at, "
                         "p.from_hour, p.to_hour, p.from_weekday, p.to_weekday FROM "
                         "\"user\" u INNER JOIN profile p ON (u.profile_id=p.id) WHERE "
-                        "u.dahua_id=%s;", vto_user_id)
+                        "u.card_id=%s;", card_id)
                     up = cursor.fetchone()
 
                     # User is not found !
                     if up is None:
-                        raise UserNotFound(vto_user_id)
+                        raise UserNotFound(card_id)
 
-                    logger.debug('Authenticated user (%s), checking authorizations ...', vto_user_id)
+                    logger.debug('Authenticated user (card:%s), checking authorizations ...', card_id)
 
                     # Expiry check
                     if up['expire_at'] is not None and dt.now().date() > up['expire_at']:
-                        raise AccessExpired('%s (uid:%s)' % (up['expire_at'], vto_user_id))
+                        raise AccessExpired('%s (uid:%s)' % (up['expire_at'], up['uid']))
 
                     # Weekday boundaries check
                     if up['from_weekday'] is not None and up['to_weekday'] is not None:
@@ -55,7 +56,7 @@ class HomeAccessApi():
             logger.error("(%s): %s" % (e.__class__.__name__, e))
             authorized = False
         else:
-            logger.info('Authorized user %s (%s / %s)', vto_user_id, up['name'], up['profile'])
+            logger.info('Authorized user uid:%s card:%s (%s / %s)', up['uid'], card_id, up['name'], up['profile'])
             authorized = True
         finally:
             if up is not None:
