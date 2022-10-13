@@ -23,13 +23,14 @@ class HomeAccessApi():
                         "SELECT u.id as uid, u.name, p.name as profile, p.expire_at, "
                         "p.from_hour, p.to_hour, p.from_weekday, p.to_weekday FROM "
                         "\"user\" u INNER JOIN profile p ON (u.profile_id=p.id) WHERE "
-                        "u.card_id=%s;", card_id)
+                        "u.card_id='%s';" % card_id)
                     up = cursor.fetchone()
 
                     # User is not found !
                     if up is None:
                         raise UserNotFound(card_id)
 
+                    print('here')
                     logger.debug('Authenticated user (card:%s), checking authorizations ...', card_id)
 
                     # Expiry check
